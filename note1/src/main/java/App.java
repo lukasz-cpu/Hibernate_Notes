@@ -8,12 +8,11 @@ public class App {
 
     public static void main(String[] args) {
         EntityManager em = entityManagerFactory.createEntityManager();
-
         em.getTransaction().begin();
+
 
 
         em.getTransaction().commit();
         em.close();
-
     }
 }
