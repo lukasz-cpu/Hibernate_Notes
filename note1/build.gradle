@@ -16,9 +16,11 @@ repositories {
 }
 
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-log4j2:3.1.1'
 	implementation 'mysql:mysql-connector-java:8.0.33'
 	implementation 'org.hibernate:hibernate-core:6.2.6.Final'
-	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter' exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

@@ -5,11 +5,13 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import org.apache.logging.log4j.LogManager;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
+@SpringBootApplication
 public class Note01Create {
     private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("unit");
 
