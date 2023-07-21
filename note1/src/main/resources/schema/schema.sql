@@ -23,3 +23,19 @@ CREATE TABLE IF NOT EXISTS `review` (
     ON DELETE CASCADE
     ON UPDATE CASCADE
 );
+
+DROP TABLE IF EXISTS `category`;
+CREATE TABLE `category` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NULL,
+  `description` VARCHAR(800) NULL,
+  PRIMARY KEY (`id`)
+);
+
+ALTER TABLE `product`
+ADD COLUMN `category_id` BIGINT NULL;
+
+ALTER TABLE `product`
+ADD CONSTRAINT fk_category_id
+FOREIGN KEY (`category_id`)
+REFERENCES category (`id`)

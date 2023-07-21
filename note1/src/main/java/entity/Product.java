@@ -9,6 +9,8 @@ import java.util.List;
 
 @Entity(name = "product")
 public class Product {
+    @OneToMany(mappedBy = "product")
+    List<Review> reviews = new ArrayList<>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,10 +23,8 @@ public class Product {
     @Column(name = "type")
     private ProductType productType;
 
-    @OneToMany(mappedBy = "product")
-    List<Review> reviews = new ArrayList<>();
-
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Category category;
 
     public Long getId() {
         return id;
@@ -90,16 +90,16 @@ public class Product {
         this.reviews = reviews;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", created=" + created +
-                ", updated=" + updated +
-                ", price=" + price +
-                ", productType=" + productType +
-                '}';
+        return "Product{" + "id=" + id + ", name='" + name + '\'' + ", description='" + description + '\'' + ", created=" + created + ", updated=" + updated + ", price=" + price + ", productType=" + productType + '}';
     }
 }

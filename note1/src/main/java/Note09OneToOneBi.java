@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.List;
 
 @SpringBootApplication
-public class Note08OneToOne {
+public class Note09OneToOneBi {
     private static final Logger log = LogManager.getLogger(Note02Read.class);
     private static final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("unit");
 
@@ -21,9 +21,10 @@ public class Note08OneToOne {
 
         em.getTransaction().begin();
 
-        Product product = em.find(Product.class, 3L);
-        log.info(product.toString());
-        log.info(product.getCategory().getName());
+        Category category = em.find(Category.class, 1L);
+        log.info(category.getName());
+        log.info(category.getCategory().toString());
+
 
 
         em.getTransaction().commit();
