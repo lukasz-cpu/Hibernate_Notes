@@ -2,10 +2,7 @@ package entity;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity(name = "attribute")
 public class Attribute {
@@ -57,5 +54,10 @@ public class Attribute {
                 ", value='" + value + '\'' +
                 ", products=" + products +
                 '}';
+    }
+
+    public void removeProduct(Product product) {
+       this.products.remove(product);
+       product.getAttributes().remove(this);
     }
 }

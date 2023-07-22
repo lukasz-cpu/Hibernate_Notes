@@ -13,7 +13,7 @@ public class Category {
     private String name;
     private String description;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
-    private List<Product> category;
+    private List<Product> products;
 
     public Long getId() {
         return id;
@@ -39,11 +39,11 @@ public class Category {
         this.description = description;
     }
 
-    public List<Product> getCategory() {
-        return category;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setCategory(List<Product> category) {
-        this.category = category;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }
