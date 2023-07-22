@@ -36,6 +36,13 @@ public class Review {
         this.rating = rating;
     }
 
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
 
     @Override
     public String toString() {

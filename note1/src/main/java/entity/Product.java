@@ -5,11 +5,13 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity(name = "product")
 public class Product {
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
     List<Review> reviews = new ArrayList<>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +27,12 @@ public class Product {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST})
+    @JoinTable( name = "product_attribute",
+                joinColumns = @JoinColumn(name = "product_id"),
+                inverseJoinColumns = @JoinColumn(name = "attribute_id"))
+    private Set<Attribute> attributes = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -98,8 +106,26 @@ public class Product {
         this.category = category;
     }
 
+    public Set<Attribute> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Set<Attribute> attributes) {
+        this.attributes = attributes;
+    }
+
     @Override
     public String toString() {
         return "Product{" + "id=" + id + ", name='" + name + '\'' + ", description='" + description + '\'' + ", created=" + created + ", updated=" + updated + ", price=" + price + ", productType=" + productType + '}';
+    }
+
+    public void addAttributes(Attribute attribute) {
+        this.attributes.add(attribute);
+        attribute.getProducts().add(this);
+    }
+
+    public void addReview(Review review) {
+        this.reviews.add(review);
+        review.setProduct(this);
     }
 }
