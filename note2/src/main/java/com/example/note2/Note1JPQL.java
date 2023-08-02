@@ -38,6 +38,7 @@ public class Note1JPQL {
 		for (Product product : resultList) {
 			log.info(product.toString());
 		}
+
 		Query countWithAvg = em.createQuery("select count(p), avg(p.price) from product p");
 		Map<String, Object> hints = countWithAvg.getHints();
 
@@ -64,6 +65,17 @@ public class Note1JPQL {
 		long size = (long) categoryWithCountArray[1];
 
 		System.out.println("Category: " + category + " size: " + size);
+
+
+		Query queryOrigin = em.createQuery(
+				"select p.category.id, COUNT(p) from product p group by p.category"
+		);
+		//query.setParameter("id", 100L);
+
+		List<Object[]> resultListOrigin = queryOrigin.getResultList();
+		for (Object[] array : resultListOrigin) {
+			log.info(array[0] + ", " + array[1]);
+		}
 
 		em.getTransaction().commit();
 		em.close();
