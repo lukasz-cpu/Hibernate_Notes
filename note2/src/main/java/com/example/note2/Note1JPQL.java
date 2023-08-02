@@ -58,8 +58,9 @@ public class Note1JPQL {
 		System.out.println("Category count: " + countCategroy);
 
 		Query categoryWithCount = em.createQuery(
-				"select p.category.name, count(p) from product p group by p.category");
+				"select p.category.id, count(p) from product p group by p.category");
 		List<Object[]> categoryWithCountList = categoryWithCount.getResultList();
+
 		Object[] categoryWithCountArray = categoryWithCountList.get(0);
 		String category = (String) categoryWithCountArray[0];
 		long size = (long) categoryWithCountArray[1];
@@ -73,6 +74,9 @@ public class Note1JPQL {
 		//query.setParameter("id", 100L);
 
 		List<Object[]> resultListOrigin = queryOrigin.getResultList();
+
+		System.out.println("SIZE NOWY: " + resultListOrigin.size());
+		System.out.println("SIZE WCZESNIEJSZY: " + categoryWithCountList.size());
 		for (Object[] array : resultListOrigin) {
 			log.info(array[0] + ", " + array[1]);
 		}
