@@ -23,11 +23,12 @@ public class Note02ProjectionDTO {
     EntityManager em = entityManagerFactory.createEntityManager();
     em.getTransaction().begin();
 
-    Query queryOrigin = em.createQuery(
-        "select com.example.note2.entity.ProductInCategoryCounterDTO(p.category.id, COUNT(p)) from product p group by p.category"
+    Query query = em.createQuery(
+        "select new com.example.note2.entity.ProductInCategoryCounterDTO(p.category.id, COUNT(p)) " +
+            "from product p group by p.category"
     );
 
-    List<ProductInCategoryCounterDTO> resultListOrigin = queryOrigin.getResultList();
+    List<ProductInCategoryCounterDTO> resultListOrigin = query.getResultList();
 
 
 
