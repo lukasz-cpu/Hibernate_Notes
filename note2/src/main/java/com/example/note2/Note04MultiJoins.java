@@ -25,6 +25,8 @@ public class Note04MultiJoins {
         Category.class);
     query.setParameter("id", 1L);
     List<Category> resultList = query.getResultList();
+
+    System.out.println(resultList.size());
     for (Category category : resultList) {
       log.info(category);
       log.info(category.getProducts());
