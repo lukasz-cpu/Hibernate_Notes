@@ -21,10 +21,7 @@ public class Note04MultiJoins {
     em.getTransaction().begin();
 
     TypedQuery<Category> query = em.createQuery(
-        "select c from category c" +
-            " left join fetch c.product p" +
-            " left join fetch p.reviews " +
-            " where c.id=:id",
+        "select c from category c left join fetch c.products p left join fetch p.reviews where c.id=:id",
         Category.class);
     query.setParameter("id", 1L);
     List<Category> resultList = query.getResultList();
