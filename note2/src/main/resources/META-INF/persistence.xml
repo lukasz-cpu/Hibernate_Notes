@@ -8,6 +8,9 @@
         <class>com.example.note2.entity.Review</class>
         <class>com.example.note2.entity.Category</class>
         <class>com.example.note2.entity.Attribute</class>
+        <class>com.example.note2.entity.Customer</class>
+        <class>com.example.note2.entity.Order</class>
+        <class>com.example.note2.entity.OrderRow</class>
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url"

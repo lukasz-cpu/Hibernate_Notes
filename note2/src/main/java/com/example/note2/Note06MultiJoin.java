@@ -1,10 +1,12 @@
 package com.example.note2;
 
-import com.example.note2.entity.Product;
+import com.example.note2.entity.Category;
+import com.example.note2.entity.Customer;
+import com.example.note2.entity.Order;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import java.util.List;
+import jakarta.persistence.TypedQuery;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,26 +21,11 @@ public class Note06MultiJoin {
   public static void main(String[] args) {
     EntityManager em = entityManagerFactory.createEntityManager();
     em.getTransaction().begin();
-    List<Product> resultList = em.createQuery(
-            "select distinct p from product p" +
-                " left join fetch p.attributes",
-            Product.class
-        )
-        .getResultList();
 
-    resultList = em.createQuery(
-            "select distinct p from product p" +
-                " left join fetch p.reviews",
-            Product.class
-        )
-        .getResultList();
+    TypedQuery<Order> query = em.createQuery(
+        "select c from order c",
+        Order.class);
 
-    log.info("Size: " + resultList.size());
-    for (Product product : resultList) {
-      log.info(product);
-      log.info(product.getAttributes());
-      log.info(product.getReviews());
-    }
 
     em.getTransaction().commit();
     em.close();
