@@ -8,12 +8,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Set;
 import org.hibernate.annotations.BatchSize;
 
-@Entity(name = "order")
+@Entity
+@Table(name = "\"order\"")
 public class Order {
 
   @Id
