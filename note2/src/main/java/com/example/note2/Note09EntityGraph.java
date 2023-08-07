@@ -8,6 +8,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Subgraph;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.apache.logging.log4j.LogManager;
@@ -33,17 +34,24 @@ public class Note09EntityGraph {
     Subgraph orderRowsSubgraph = entityGraph.addSubgraph("orderRows");
     orderRowsSubgraph.addAttributeNodes("product");
 
-    Map<String, Object> properties = new HashMap<>();
-    properties.put("jakarta.persistence.fetchgraph", entityGraph);
-    Order order = em.find(Order.class, 1L, properties);
+//    Map<String, Object> properties = new HashMap<>();
+//    properties.put("jakarta.persistence.fetchgraph", entityGraph);
+//    Order order = em.find(Order.class, 1L, properties);
 
-    log.info(order);
-    Set<OrderRow> orderRows = order.getOrderRows();
-    for (OrderRow orderRow : orderRows) {
-      log.info("Product: " + orderRow.getProduct());
+    List<Order> orderList = em.createQuery("select o from Order o", Order.class).setHint("jakarta.persistence.fetchgraph", entityGraph)
+        .getResultList();
+
+    for (Order order : orderList) {
+      log.info(order);
+      Set<OrderRow> orderRows = order.getOrderRows();
+      for (OrderRow orderRow : orderRows) {
+        log.info("Product: " + orderRow.getProduct());
+      }
+      log.info(orderRows);
+      log.info(order.getCustomer());
+
     }
-    log.info(orderRows);
-    log.info(order.getCustomer());
+
 
     em.getTransaction().commit();
     em.close();
