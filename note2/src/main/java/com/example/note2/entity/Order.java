@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedAttributeNode;
 import jakarta.persistence.NamedEntityGraph;
+import jakarta.persistence.NamedSubgraph;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -16,13 +17,14 @@ import java.time.LocalDateTime;
 import java.util.Set;
 import org.hibernate.annotations.BatchSize;
 
-@NamedEntityGraph(
-    name = "order-rows",
-    attributeNodes = {
-        @NamedAttributeNode("orderRows"),
-        @NamedAttributeNode("customer")
-    }
-)
+//@NamedEntityGraph(
+//    name = "order-rows",
+//    attributeNodes = {
+//        @NamedAttributeNode(value = "orderRows", subgraph = "orderRows"),
+//        @NamedAttributeNode("customer")
+//    },
+//    subgraphs = @NamedSubgraph(name = "orderRows", attributeNodes = @NamedAttributeNode("product"))
+//)
 @Entity
 @Table(name = "\"order\"")
 public class Order {
