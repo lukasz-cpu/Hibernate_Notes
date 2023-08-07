@@ -6,6 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.NamedAttributeNode;
+import jakarta.persistence.NamedEntityGraph;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -14,6 +16,13 @@ import java.time.LocalDateTime;
 import java.util.Set;
 import org.hibernate.annotations.BatchSize;
 
+@NamedEntityGraph(
+    name = "order-rows",
+    attributeNodes = {
+        @NamedAttributeNode("orderRows"),
+        @NamedAttributeNode("customer")
+    }
+)
 @Entity
 @Table(name = "\"order\"")
 public class Order {
