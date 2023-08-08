@@ -19,18 +19,15 @@ public class Note10NPlusOne {
 
   public static void main(String[] args) {
     EntityManager em = entityManagerFactory.createEntityManager();
-    em.unwrap(Session.class).setJdbcBatchSize(5);
     em.getTransaction().begin();
 
     Long lastId = em.createQuery("select max(r.id) from BatchReview r", Long.class).getSingleResult();
 
-    for (long i = 1; i <= 30; i++) {
-      if (i % 5 == 0) {
-        em.flush();
-        em.clear();
-      }
+    for (long i = 1; i <= 60; i++) {
       em.persist(new BatchReview(lastId + i, "Treść", 5, 1L));
     }
+
+
 
     em.getTransaction().commit();
     em.close();
