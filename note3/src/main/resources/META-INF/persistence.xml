@@ -4,13 +4,13 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
              version="3.0">
     <persistence-unit name="unit">
-        <class>com.example.note2.entity.Product</class>
-        <class>com.example.note2.entity.Review</class>
-        <class>com.example.note2.entity.Category</class>
-        <class>com.example.note2.entity.Attribute</class>
-        <class>com.example.note2.entity.Customer</class>
-        <class>com.example.note2.entity.Order</class>
-        <class>com.example.note2.entity.OrderRow</class>
+        <class>com.example.note3.entity.Product</class>
+        <class>com.example.note3.entity.Review</class>
+        <class>com.example.note3.entity.Category</class>
+        <class>com.example.note3.entity.Attribute</class>
+        <class>com.example.note3.entity.Customer</class>
+        <class>com.example.note3.entity.Order</class>
+        <class>com.example.note3.entity.OrderRow</class>
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url"
@@ -22,6 +22,9 @@
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.format_sql" value="true" />
+            <property name="hibernate.jdbc.batch_size" value="5" />
+            <property name="hibernate.order_updates" value="true" />
+            <property name="hibernate.order_inserts" value="true" />
         </properties>
     </persistence-unit>
 </persistence>

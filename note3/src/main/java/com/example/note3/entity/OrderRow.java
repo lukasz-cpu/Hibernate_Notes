@@ -1,4 +1,4 @@
-package com.example.note2.entity;
+package com.example.note3.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

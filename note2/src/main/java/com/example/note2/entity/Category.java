@@ -2,7 +2,6 @@ package com.example.note2.entity;
 
 import jakarta.persistence.*;
 
-import java.util.List;
 import java.util.Set;
 
 @Entity(name = "category")

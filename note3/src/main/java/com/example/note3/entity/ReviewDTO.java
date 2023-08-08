@@ -1,4 +1,4 @@
-package com.example.note2.entity;
+package com.example.note3.entity;
 
 public class ReviewDTO {
     private Long id;
