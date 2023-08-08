@@ -27,8 +27,6 @@ public class Note10NPlusOne {
       em.persist(new BatchReview(lastId + i, "Treść", 5, 1L));
     }
 
-
-
     em.getTransaction().commit();
     em.close();
 
