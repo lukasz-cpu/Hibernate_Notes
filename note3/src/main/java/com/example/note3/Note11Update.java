@@ -4,32 +4,39 @@ import com.example.note3.entity.batch.BatchReview;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import org.hibernate.Session;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Note10NPlusOne {
+public class Note11Update {
 
-  private static Logger log = LogManager.getLogger(Note10NPlusOne.class);
+  private static Logger log = LogManager.getLogger(com.example.note3.Note10Insert.class);
   private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(
       "unit");
 
   public static void main(String[] args) {
     EntityManager em = entityManagerFactory.createEntityManager();
-//    em.unwrap(Session.class).setJdbcBatchSize(10);
     em.getTransaction().begin();
 
-    Long lastId = em.createQuery("select max(r.id) from BatchReview r", Long.class).getSingleResult();
-
-    for (long i = 1; i <= 30; i++) {
-//      if (i % 5 == 0) {
-//        em.flush();
-//        em.clear();
-//      }
-      em.persist(new BatchReview(lastId + i, "Treść", 5, 1L));
+    Long count = em.createQuery("select count(r) from BatchReview r", Long.class).getSingleResult();
+    int batchSize = 10;
+    for (int i = 0; i < count; i = i + batchSize) {
+      List<BatchReview> review = em.createQuery(
+              "select r from BatchReview r",
+              BatchReview.class
+          )
+          .setFirstResult(i)
+          .setMaxResults(batchSize)
+          .getResultList();
+      for (BatchReview batchReview : review) {
+        batchReview.setContent("Nowa treść !!!!!!!!!");
+        batchReview.setRating(15);
+      }
+      em.flush();
+      em.clear();
     }
 
     em.getTransaction().commit();
