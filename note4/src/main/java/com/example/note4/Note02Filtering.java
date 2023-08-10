@@ -41,13 +41,14 @@ public class Note02Filtering {
             criteriaBuilder.greaterThan(orders.get("total"), total),
             criteriaBuilder.and(
                 criteriaBuilder.or(
-                    criteriaBuilder.equal(customer.get("id"), id1),
-                    criteriaBuilder.equal(customer.get("id"), id2)
+//                    criteriaBuilder.equal(customer.get("id"), id1),
+//                    criteriaBuilder.equal(customer.get("id"), id2)
+                    criteriaBuilder.like(customer.get("lastname"), "K%")
                 )));
 
     TypedQuery<Customer> query = em.createQuery(criteriaQuery);
-    query.setParameter(id1, 1L);
-    query.setParameter(id2, 1L);
+//    query.setParameter(id1, 1L);
+//    query.setParameter(id2, 1L);
     query.setParameter(total, new BigDecimal("30.00"));
     List<Customer> resultList = query.getResultList();
     for (Customer result : resultList) {
