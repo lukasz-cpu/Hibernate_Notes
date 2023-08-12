@@ -3,8 +3,14 @@ package com.example.note5.entity;
 import com.example.note5.entity.batch.CustomerDetails;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
+import org.hibernate.annotations.SortComparator;
 
 @Entity(name = "customer")
 public class Customer {
@@ -24,6 +30,19 @@ public class Customer {
 
   @OneToOne(fetch = FetchType.LAZY, mappedBy = "customer", cascade = CascadeType.ALL, optional = false)
   private CustomerDetails customerDetails;
+
+  @OneToMany(cascade = CascadeType.PERSIST)
+  @JoinColumn(name = "customer_id")
+  @SortComparator(SortById.class)
+  private SortedSet<Review> reviews = new TreeSet<>();
+
+  public static class SortById implements Comparator<Review>{
+
+    @Override
+    public int compare(Review o1, Review o2) {
+      return o1.getId().compareTo(o2.getId());
+    }
+  }
 
   public Long getId() {
     return id;
@@ -87,6 +106,14 @@ public class Customer {
 
   public void setCustomerDetails(CustomerDetails customerDetails) {
     this.customerDetails = customerDetails;
+  }
+
+  public SortedSet<Review> getReviews() {
+    return reviews;
+  }
+
+  public void setReviews(SortedSet<Review> reviews) {
+    this.reviews = reviews;
   }
 
   @Override

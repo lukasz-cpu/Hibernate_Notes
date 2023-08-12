@@ -1,6 +1,5 @@
 package com.example.note5;
 
-import com.example.note5.entity.Order;
 import com.example.note5.entity.RealProduct;
 import com.example.note5.entity.VirtualProduct;
 import jakarta.persistence.EntityManager;
@@ -10,8 +9,8 @@ import java.time.LocalDateTime;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Note04Inheriting {
-  private static Logger log = LogManager.getLogger(Note04Inheriting.class);
+public class Note05Inheriting {
+  private static Logger log = LogManager.getLogger(Note05Inheriting.class);
   private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(
       "unit");
 
