@@ -12,6 +12,7 @@
         <class>com.example.note5.entity.Order</class>
         <class>com.example.note5.entity.OrderRow</class>
         <class>com.example.note5.entity.batch.BatchReview</class>
+        <class>com.example.note5.entity.batch.CustomerDetails</class>
 
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>

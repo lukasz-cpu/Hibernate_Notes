@@ -1,7 +1,9 @@
 package com.example.note5.entity;
 
+import com.example.note5.entity.batch.CustomerDetails;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Entity(name = "customer")
@@ -16,6 +18,12 @@ public class Customer {
 
   @OneToMany(mappedBy = "customer")
   private Set<Order> orders;
+
+  @ElementCollection
+  private List<Address> address;
+
+  @OneToOne(fetch = FetchType.LAZY, mappedBy = "customer", cascade = CascadeType.ALL, optional = false)
+  private CustomerDetails customerDetails;
 
   public Long getId() {
     return id;
@@ -65,6 +73,21 @@ public class Customer {
     this.orders = orders;
   }
 
+  public List<Address> getAddress() {
+    return address;
+  }
+
+  public void setAddress(List<Address> address) {
+    this.address = address;
+  }
+
+  public CustomerDetails getCustomerDetails() {
+    return customerDetails;
+  }
+
+  public void setCustomerDetails(CustomerDetails customerDetails) {
+    this.customerDetails = customerDetails;
+  }
 
   @Override
   public String toString() {
