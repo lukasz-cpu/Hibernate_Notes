@@ -13,6 +13,10 @@
         <class>com.example.note5.entity.OrderRow</class>
         <class>com.example.note5.entity.batch.BatchReview</class>
         <class>com.example.note5.entity.batch.CustomerDetails</class>
+        <class>com.example.note5.entity.BaseProduct</class>
+        <class>com.example.note5.entity.RealProduct</class>
+        <class>com.example.note5.entity.VirtualProduct</class>
+
 
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
