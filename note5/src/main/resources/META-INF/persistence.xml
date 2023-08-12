@@ -16,6 +16,7 @@
         <class>com.example.note5.entity.BaseProduct</class>
         <class>com.example.note5.entity.RealProduct</class>
         <class>com.example.note5.entity.VirtualProduct</class>
+        <class>com.example.note5.entity.Note</class>
 
 
         <properties>

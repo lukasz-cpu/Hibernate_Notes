@@ -36,6 +36,9 @@ public class Customer {
   @SortComparator(SortById.class)
   private SortedSet<Review> reviews = new TreeSet<>();
 
+  @OneToMany(cascade = CascadeType.PERSIST)
+  private List<Note> notes = new ArrayList<>();
+
   public static class SortById implements Comparator<Review>{
 
     @Override
@@ -114,6 +117,14 @@ public class Customer {
 
   public void setReviews(SortedSet<Review> reviews) {
     this.reviews = reviews;
+  }
+
+  public List<Note> getNotes() {
+    return notes;
+  }
+
+  public void setNotes(List<Note> notes) {
+    this.notes = notes;
   }
 
   @Override
