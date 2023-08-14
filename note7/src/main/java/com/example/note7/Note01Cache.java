@@ -21,17 +21,17 @@ public class Note01Cache {
     em.getTransaction().begin();
     Customer customer = em.find(Customer.class, 1L);
     log.info(customer);
-    log.info(customer.getOrders());
+//    log.info(customer.getOrders());
     em.getTransaction().commit();
     em.close();
 
-    EntityManager em2 = entityManagerFactory.createEntityManager();
-    em2.getTransaction().begin();
-    customer = em2.find(Customer.class, 1L);
+    em = entityManagerFactory.createEntityManager();
+    em.getTransaction().begin();
+    customer = em.find(Customer.class, 1L);
     log.info(customer);
-    log.info(customer.getOrders());
-    em2.getTransaction().commit();
-    em2.close();
+//    log.info(customer.getOrders());
+    em.getTransaction().commit();
+    em.close();
   }
 
 }
