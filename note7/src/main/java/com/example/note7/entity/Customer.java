@@ -37,6 +37,7 @@ public class Customer {
   private LocalDateTime updated;
 
   @OneToMany(mappedBy = "customer")
+  @Cache(region = "orders", usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
   private Set<Order> orders;
 
   @ElementCollection

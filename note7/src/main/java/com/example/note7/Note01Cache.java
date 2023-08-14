@@ -21,6 +21,7 @@ public class Note01Cache {
     em.getTransaction().begin();
     Customer customer = em.find(Customer.class, 1L);
     log.info(customer);
+    log.info(customer.getOrders());
     em.getTransaction().commit();
     em.close();
 
@@ -28,6 +29,7 @@ public class Note01Cache {
     em2.getTransaction().begin();
     customer = em2.find(Customer.class, 1L);
     log.info(customer);
+    log.info(customer.getOrders());
     em2.getTransaction().commit();
     em2.close();
   }

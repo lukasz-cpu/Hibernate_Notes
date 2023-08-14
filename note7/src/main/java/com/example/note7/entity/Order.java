@@ -1,5 +1,6 @@
 package com.example.note7.entity;
 
+import jakarta.persistence.Cacheable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -17,6 +18,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Set;
 import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @NamedEntityGraphs({
     @NamedEntityGraph(
@@ -37,6 +40,8 @@ import org.hibernate.annotations.BatchSize;
 )
 @Entity
 @Table(name = "\"order\"")
+@Cacheable
+@Cache(region = "order", usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Order {
 
   @Id
