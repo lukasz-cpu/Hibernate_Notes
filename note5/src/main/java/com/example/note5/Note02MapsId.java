@@ -19,7 +19,7 @@ public class Note02MapsId {
     EntityManager em = entityManagerFactory.createEntityManager();
     em.getTransaction().begin();
 
-    Customer customer = em.find(Customer.class, 1L);
+    var customer = em.find(Customer.class, 1L);
 //    CustomerDetails customerDetails = new CustomerDetails();
 //    customerDetails.setBirthPlace("Warszawa");
 //    customerDetails.setBirthDay(LocalDate.of(2000, 10, 22));
