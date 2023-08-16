@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+    <persistence-unit name="unit">
+        <class>com.example.note8.entity.Product</class>
+        <class>com.example.note8.entity.Review</class>
+        <class>com.example.note8.entity.Category</class>
+        <class>com.example.note8.entity.Attribute</class>
+        <class>com.example.note8.entity.Customer</class>
+        <class>com.example.note8.entity.Order</class>
+        <class>com.example.note8.entity.OrderRow</class>
+        <class>com.example.note8.entity.batch.BatchReview</class>
+        <class>com.example.note8.entity.batch.CustomerDetails</class>
+        <class>com.example.note8.entity.BaseProduct</class>
+        <class>com.example.note8.entity.RealProduct</class>
+        <class>com.example.note8.entity.VirtualProduct</class>
+        <class>com.example.note8.entity.Note</class>
+
+
+        <properties>
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:mysql://host.docker.internal:49153/localdb?useUnicode=true&amp;serverTimezone=UTC" />
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.jdbc.password" value="mysqlpw"/>
+            <property name="jakarta.persistence.schema-generation.database.action" value="none"/>
+
+            <property name="hibernate.dialdect" value="org.hibernate.dialect.MySQLDialect" />
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+            <property name="hibernate.jdbc.batch_size" value="10" />
+            <property name="hibernate.order_updates" value="true" />
+            <property name="hibernate.order_inserts" value="true" />
+            <property name="hibernate.cache.use_second_level_cache" value="true" />
+            <property name="hibernate.cache.region.factory_class" value="jcache"/>
+            <property name="hibernate.cache.use_query_cache" value="true"/>
+<!--            <property name="hibernate.generate_statistics" value="true" />-->
+        </properties>
+    </persistence-unit>
+</persistence>
